@@ -7,7 +7,7 @@ public class UI {
 	{		
 		for( int r = 0 ; r < pieces.length ; r ++) 
 		{
-			System.out.print((r + 1) + " ");
+			System.out.print( (8 -r) + " ");
 			for( int c = 0 ; c < pieces[r].length ; c ++) 
 			{
 				printPiece(pieces[r][c]);
