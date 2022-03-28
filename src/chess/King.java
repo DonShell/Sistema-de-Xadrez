@@ -1,6 +1,7 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Position;
 
 public class King extends ChessPiece{
 
@@ -15,9 +16,50 @@ public class King extends ChessPiece{
 		return "K";
 	}
 
+
+	private boolean canMove(Position position)
+	{
+		ChessPiece p = (ChessPiece)getBoard().getPiece(position);
+		return p == null || p.getColor() != getColor();
+	}
+	
 	@Override
-	public boolean[][] possibleMovies() {
-		boolean[][] possibleMovies = new boolean[getBoard().getRows()][getBoard().getColumns()];
-		return possibleMovies;
+	public boolean[][] possibleMoves() {
+		boolean[][] pM = new boolean[getBoard().getRows()][getBoard().getColumns()];
+	
+		int row = position.getRow();
+		int column = position.getColumn();
+		
+			
+	
+		Position p = new Position(row + 1,column);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row - 1,column);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row,column + 1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row ,column - 1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		
+		p.setValues(row - 1,column -1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row - 1,column + 1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row + 1,column + 1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		p.setValues(row + 1 ,column - 1);
+		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
+		
+		
+		
+		
+		return pM;
 	}
 }

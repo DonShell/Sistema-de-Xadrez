@@ -57,7 +57,7 @@ public class UI {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
 		}
 	}
-	public static void printBoard (ChessPiece[][] pieces)
+	public static void printBoard (ChessPiece[][] pieces, boolean[][] possibleMoves)
 	{	
 		System.out.println(ANSI_BLACK_BACKGROUND + "\n\n       T A B U L E I R O :      " );
 		System.out.println( "  " + ANSI_BLUE_BACKGROUND + "                            " + ANSI_BLACK_BACKGROUND);
@@ -68,21 +68,42 @@ public class UI {
 			{
 				//Color position table
 				System.out.print( (((r % 2) + c) % 2 == 0) ? ANSI_YELLOW_BACKGROUND : ANSI_PURPLE_BACKGROUND);
-				printPiece(pieces[r][c]);
+				printPiece(pieces[r][c],possibleMoves[r][c]);
 			}
 			System.out.print(ANSI_BLUE_BACKGROUND + "  " + ANSI_BLACK_BACKGROUND + "\n");
 		}
 		System.out.println( "  " + ANSI_BLUE_BACKGROUND + ANSI_WHITE + "   a  b  c  d  e  f  g  h   " + ANSI_RESET + ANSI_BLACK_BACKGROUND + "\n");
 	}
 	
-	
-	private static void printPiece(ChessPiece piece) {
 
-		System.out.print(" ");
-		if (piece == null) {
-			System.out.print(" ");
-		} 
+	public static void printBoard(ChessPiece[][] pieces){
+		printBoard(pieces,new boolean[pieces.length][pieces[0].length]);
+	}
+	private static void printPiece(ChessPiece piece, boolean possibleMove) {
+
+		char c = ' ';
+		if(piece == null)
+		{
+			if(possibleMove)
+			{
+				c = '*';
+			}
+			else
+			{
+				c = ' ';
+			}
+		}
 		else
+		{
+			c = piece.toString().charAt(0);
+		}
+		
+		
+		//writing colors
+		if (possibleMove) {
+			System.out.print(ANSI_RED); 
+		}
+		else if(piece != null)
 		{
 			if(piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE_BOLD_BRIGHT);
@@ -91,9 +112,10 @@ public class UI {
 			{
 				System.out.print(ANSI_BLACK);
 			}
-			System.out.print(piece);
-		}
-		System.out.print(" " + ANSI_RESET);
+		}	
+		
+		
+		System.out.print(" " + c + " " + ANSI_RESET);
 	}
 	
 }

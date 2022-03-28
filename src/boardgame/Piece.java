@@ -12,14 +12,14 @@ public abstract class Piece {
 		this.borad = borad;
 	}
 	
-	public abstract boolean[][] possibleMovies();
+	public abstract boolean[][] possibleMoves();
 	
 	public boolean possibleMove(Position position) {
-		return possibleMovies()[position.getRow()][position.getColumn()];
+		return possibleMoves()[position.getRow()][position.getColumn()];
 	}
 	public boolean isThereAnyPossibleMove()
 	{
-		boolean[][] possibleMoveis = this.possibleMovies();
+		boolean[][] possibleMoveis = this.possibleMoves();
 		for(int r = 0 ; r < possibleMoveis.length ;  r++ ) {
 			for(int c = 0 ; c < possibleMoveis[r].length ;  c++ ) {
 				if (possibleMoveis[r][c]) 
@@ -29,6 +29,12 @@ public abstract class Piece {
 			}	
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return " ";
 	}
 	
 }
