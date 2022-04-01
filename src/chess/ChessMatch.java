@@ -5,10 +5,31 @@ import boardgame.Piece;
 import boardgame.Position;
 
 public class ChessMatch {
+	
 	private Board board;
+	private int turn;
+	private Color currentPlayer;
+
+	public Color getCurrentPlayer()
+	{
+		return currentPlayer;
+	}
+
+	public int getTurn()
+	{
+		return turn;
+	}
+	
+	private void nextTurn() {
+		turn++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
 	
 	public ChessMatch() {
 		board = new Board(8,8);
+		turn = 1;
+		currentPlayer = Color.WHITE;
+		
 		initialSetup();
 	}
 	public ChessPiece[][] getPieces() {
@@ -39,7 +60,7 @@ public class ChessMatch {
 		validateTargetPosition(source, target);
 		
 		Piece capturedPiece = makeMove(source,target);
-		
+		nextTurn();
 		return (ChessPiece) capturedPiece;
 	}
 	
@@ -58,6 +79,10 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(position))
 		{
 			throw new ChessException("Position source invalid.");
+		}
+		if(currentPlayer != ((ChessPiece) board.getPiece(position)).getColor())
+		{
+			throw new ChessException("The chosen piece is not yours.");
 		}
 		if(! board.getPiece(position).isThereAnyPossibleMove())
 		{
