@@ -2,14 +2,17 @@ package chess.pieces;
 
 import boardgame.Board;
 import boardgame.Position;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.Color;
 
 public class King extends ChessPiece{
 
-	public King(Board borad, Color color) {
+	private ChessMatch chessMatch;
+	
+	public King(Board borad, Color color, ChessMatch chessMatch) {
 		super(borad, color);
-		// TODO Auto-generated constructor stub
+		this.chessMatch = chessMatch;
 	}
 
 	@Override
@@ -18,10 +21,15 @@ public class King extends ChessPiece{
 		return "K";
 	}
 
-
-	private boolean canMove(Position position)
+	private boolean testRoockCastling(Position position)
 	{
 		ChessPiece p = (ChessPiece)getBoard().getPiece(position);
+		return p != null && p instanceof Rook && p.getColor() == getColor() && p.getMoveCount() == 0;
+	}
+	
+	private boolean canMove(Position pos)
+	{
+		ChessPiece p = (ChessPiece)getBoard().getPiece(pos);
 		return p == null || p.getColor() != getColor();
 	}
 	
@@ -60,8 +68,43 @@ public class King extends ChessPiece{
 		if (getBoard().positionExists(p) && canMove(p)) pM[p.getRow()][p.getColumn()] = true;
 		
 		
+
+		//specialMove castling
+		if (getMoveCount() == 0 && !chessMatch.getCheck())
+		{
+			//castling kingside rook
+			Position positionRook = new Position(row, column + 3);
+			if(testRoockCastling(positionRook)) {
+				
+				Position p1 = new Position(row, column + 1);
+				Position p2 = new Position(row, column + 2);
+				System.out.println(getBoard().getPiece(p1));
+				System.out.println(getBoard().getPiece(p2));
+				if(getBoard().getPiece(p1) == null && getBoard().getPiece(p2) == null )
+				{
+
+					pM[row][column + 2] = true;
+				}
+			}
+			//castling queenside rook
+			positionRook = new Position(row, column - 4);
+			if(testRoockCastling(positionRook)) {
+				Position p1 = new Position(row, column - 1);
+				Position p2 = new Position(row, column - 2);
+				Position p3 = new Position(row, column - 3);
+				if(getBoard().getPiece(p1) == null && getBoard().getPiece(p2) == null && getBoard().getPiece(p3) == null  )
+				{
+					pM[row][column - 2] = true;
+				}
+			
+			}
+		}
 		
 		
 		return pM;
 	}
+	
+	
+	
+	
 }
