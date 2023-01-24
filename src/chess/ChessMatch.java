@@ -335,7 +335,7 @@ public class ChessMatch {
 		Color color = Color.WHITE;
 
 		placeNewPiece('a',2,  new Pawn(board, color,this));
-		placeNewPiece('b',7,  new Pawn(board, color,this));
+		placeNewPiece('b',2,  new Pawn(board, color,this));
 		placeNewPiece('c',2,  new Pawn(board, color,this));
 		placeNewPiece('d',2,  new Pawn(board, color,this));
 		placeNewPiece('e',2,  new Pawn(board, color,this));
@@ -361,7 +361,7 @@ public class ChessMatch {
 		placeNewPiece('d',7,  new Pawn(board, color,this));
 		placeNewPiece('e',7,  new Pawn(board, color,this));
 		placeNewPiece('f',7,  new Pawn(board, color,this));
-		placeNewPiece('g',2,  new Pawn(board, color,this));
+		placeNewPiece('g',7,  new Pawn(board, color,this));
 		placeNewPiece('h',7,  new Pawn(board, color,this));
 		
 		placeNewPiece('a',8,  new Rook(board, color));
