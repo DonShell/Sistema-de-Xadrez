@@ -3,16 +3,16 @@
 -------------------------------------------------------------
 
 
-In English
+In English:
   
-#Project Chess Game#
-
+# Project Chess Game
+  
 Project Chess Game with educational purpose made in Java 11.
   
 Finished 01/24/2023 with the participation of Professor Nelio Alves in the Java course
   
   
-Runnable jar in /jar/Chess-Game.jar
+Runnable jar in [/jar/Chess-Game.jar](/jar/Chess-Game.jar)
   
 Use colored terminal to run
   
@@ -33,11 +33,13 @@ Professor Nelio Alves
 
 Em português:
   
-projeto Jogo de Xadrez com finalidade educacional feito em Java 11.
+# Projeto Jogo de Xadrez
+  
+Projeto Jogo de Xadrez com finalidade educacional feito em Java 11.
   
 Finalizado em 24/01/2023 com a participação do professor Nélio Alves no curso de Java
   
-Jar executável em /jar/Chess-Game.jar
+Jar executável em [/jar/Chess-Game.jar](/jar/Chess-Game.jar)
 
 Use terminal colorido para executar
   
