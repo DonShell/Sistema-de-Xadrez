@@ -145,15 +145,13 @@ public class ChessMatch {
 	
 	public ChessPiece replatedPromotedPiece(String type)
 	{
-		
-		type = type.toUpperCase();
 		if (promoted == null)
 		{
 			throw new IllegalStateException("There is no piece to be promoted");
 		}
 		if(!type.equals("B") && !type.equals("N") &&!type.equals("R") && !type.equals("Q"))
 		{
-			throw new InvalidParameterException("Invalid type for promotion");
+			return promoted;
 		}
 		
 		
@@ -342,7 +340,7 @@ public class ChessMatch {
 		placeNewPiece('d',2,  new Pawn(board, color,this));
 		placeNewPiece('e',2,  new Pawn(board, color,this));
 		placeNewPiece('f',2,  new Pawn(board, color,this));
-		//placeNewPiece('g',2,  new Pawn(board, color,this));
+		placeNewPiece('g',2,  new Pawn(board, color,this));
 		placeNewPiece('h',2,  new Pawn(board, color,this));
 
 		
@@ -352,13 +350,13 @@ public class ChessMatch {
 		placeNewPiece('d',1,  new Queen(board, color));
 		placeNewPiece('e',1,  new King(board, color,this));
 		placeNewPiece('f',1,  new Bishop(board, color));
-		//placeNewPiece('g',1,  new Knight(board, color));
+		placeNewPiece('g',1,  new Knight(board, color));
 		placeNewPiece('h',1,  new Rook(board, color));
 		
 		color = Color.BLACK;
 
 		placeNewPiece('a',7,  new Pawn(board, color,this));
-		//placeNewPiece('b',7,  new Pawn(board, color,this));
+		placeNewPiece('b',7,  new Pawn(board, color,this));
 		placeNewPiece('c',7,  new Pawn(board, color,this));
 		placeNewPiece('d',7,  new Pawn(board, color,this));
 		placeNewPiece('e',7,  new Pawn(board, color,this));
@@ -367,7 +365,7 @@ public class ChessMatch {
 		placeNewPiece('h',7,  new Pawn(board, color,this));
 		
 		placeNewPiece('a',8,  new Rook(board, color));
-		//placeNewPiece('b',8,  new Knight(board, color));
+		placeNewPiece('b',8,  new Knight(board, color));
 		placeNewPiece('c',8,  new Bishop(board, color));
 		placeNewPiece('d',8,  new Queen(board, color));
 		placeNewPiece('e',8,  new King(board, color,this));
