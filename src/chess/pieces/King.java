@@ -78,8 +78,6 @@ public class King extends ChessPiece{
 				
 				Position p1 = new Position(row, column + 1);
 				Position p2 = new Position(row, column + 2);
-				System.out.println(getBoard().getPiece(p1));
-				System.out.println(getBoard().getPiece(p2));
 				if(getBoard().getPiece(p1) == null && getBoard().getPiece(p2) == null )
 				{
 
